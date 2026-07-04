@@ -31,13 +31,29 @@ document.addEventListener('DOMContentLoaded', () => {
   revealEls.forEach(el => io.observe(el));
 
   const searchInput = document.getElementById('siteSearch');
+  const searchBtn = document.getElementById('siteSearchBtn');
   if (searchInput) {
-    searchInput.addEventListener('input', () => {
+    const filterTiles = () => {
       const q = searchInput.value.trim();
       document.querySelectorAll('.tile').forEach(tile => {
         const name = tile.querySelector('.name').textContent;
         tile.style.display = !q || name.includes(q) ? '' : 'none';
       });
+    };
+    searchInput.addEventListener('input', filterTiles);
+
+    const goToMatch = () => {
+      const q = searchInput.value.trim();
+      if (!q) return;
+      const activeTiles = Array.from(document.querySelectorAll('a.tile.active'));
+      const match = activeTiles.find(t => t.querySelector('.name').textContent.includes(q));
+      if (match) {
+        window.location.href = match.getAttribute('href');
+      }
+    };
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') goToMatch();
     });
+    if (searchBtn) searchBtn.addEventListener('click', goToMatch);
   }
 });
