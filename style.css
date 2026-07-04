@@ -89,14 +89,11 @@ body::before{
 
 .author-credit{
   color:var(--gold-light);
-  font-size:.78rem;
+  font-size:.72rem;
   font-weight:500;
   letter-spacing:.02em;
   opacity:.85;
-  display:none;
-}
-@media(min-width:520px){
-  .author-credit{display:inline-block;}
+  display:inline-block;
 }
 
 /* نوار طلایی ظریف زیر هدر، جایگزین موتیف پرشلوغ قبلی */
@@ -340,5 +337,6 @@ footer::before{
   .hero{padding:44px 16px 34px;border-radius:20px;}
   .hero h1{font-size:2rem;}
   .site-header nav{display:none;}
+  .brand-group{flex-direction:column;align-items:flex-start;gap:2px;}
   main{padding:32px 16px 70px;}
 }
